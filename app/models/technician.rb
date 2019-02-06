@@ -11,8 +11,6 @@
 #
 
 class Technician < ApplicationRecord
-  attr_accessor :pin_number
-  
   validates :name, presence: true
   validates :pin_number, presence: true, :inclusion => { :in => 1000..9999, message: "PIN must be a 4-digit number" }
 

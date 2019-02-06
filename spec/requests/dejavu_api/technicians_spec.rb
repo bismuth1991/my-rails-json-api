@@ -20,10 +20,29 @@ RSpec.describe 'DejaVu Technicians API', type: :request do
       expect(num_technicians).to eq(3)
     end
 
-    it "fetches each technician in correct format" do 
+    it "fetches each technician in correct json format" do 
       JSON.parse(response.body).values.each do |technician|
         expect(technician).to match_response_schema("dejavu_technician")
       end
+    end
+  end
+
+  describe "GET #show" do 
+    before { get "/dejavu_api/technicians/#{nina.id}" }
+
+    it "responses with status code of 200" do
+      expect(response).to have_http_status(200)
+    end
+
+    it "fetches the right technician" do 
+      technician = JSON.parse(response.body)
+
+      expect(technician["name"]).to eq("Nina")
+      expect(technician["pin_number"]).to eq(1234)
+    end
+
+    it "returns the technician in correct json format" do 
+      expect(response.body).to match_response_schema("dejavu_technician")
     end
   end
 

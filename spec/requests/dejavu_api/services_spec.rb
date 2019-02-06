@@ -68,4 +68,17 @@ RSpec.describe 'DejaVu Services API', type: :request do
       expect(response.body).to match_response_schema("dejavu_service")
     end
   end
+
+  describe "DELETE #destroy" do 
+    before { delete "/dejavu_api/services/#{gel_manicure.id}" }
+
+    it "responses with status code of 200" do
+      expect(response).to have_http_status(200)   
+    end
+
+    it "deletes the service" do
+      expect(Service.find(gel_manicure.id)).to be_nil
+      expect(Service.all.length).to eq(2)
+    end
+  end
 end

@@ -20,4 +20,6 @@ RSpec.describe Service, type: :model do
   end
 
   it { should validate_presence_of(:price) }
+
+  it { should have_many(:receipts) }
 end

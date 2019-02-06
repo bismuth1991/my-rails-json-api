@@ -60,8 +60,8 @@ RSpec.describe 'DejaVu Services API', type: :request do
     end
 
     it "updates the service" do 
-      updated_service = JSON.parse(response.body)
-      expect(updated_service["price"]).to eq(35)
+      updated_service = Service.find(gel_manicure.id)
+      expect(updated_service.price).to eq(35)
     end
 
     it "returns the updated service in correct json format" do 

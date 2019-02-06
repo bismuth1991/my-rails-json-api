@@ -1,6 +1,7 @@
 class DejavuApi::TechniciansController < ApplicationController
   def index
-    
+    @technicians = Technician.all 
+    render :index
   end
   
   def show

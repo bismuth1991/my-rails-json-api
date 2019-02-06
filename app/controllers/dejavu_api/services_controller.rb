@@ -14,6 +14,16 @@ class DejavuApi::ServicesController < ApplicationController
     end
   end
 
+  def update
+    @service = Service.find(params[:id])
+
+    if @service.update(service_params)
+      render :show
+    else
+      render json: @service.errors.full_messages, status: 422
+    end
+  end
+
   private
 
   def service_params

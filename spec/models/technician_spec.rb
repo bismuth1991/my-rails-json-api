@@ -17,8 +17,7 @@ RSpec.describe Technician, type: :model do
 
   describe "pin_number validation" do
     it { should validate_presence_of(:pin_number) }
-    it { should validate_numericality_of(:pin_number).is_less_than(10000).with_message("PIN must be a 4-digit number") }
-    it { should validate_numericality_of(:pin_number).is_greater_than(999).with_message("PIN must be a 4-digit number") }
+    it { should validate_inclusion_of(:pin_number).in_range(1000..9999).with_message("PIN must be a 4-digit number") }
   end
 
   it { should have_many(:receipts) }

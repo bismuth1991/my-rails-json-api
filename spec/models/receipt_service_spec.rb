@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ReceiptService, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should belong_to(:receipt) }
+  it { should belong_to(:service) }
 end
+

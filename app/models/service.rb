@@ -12,4 +12,7 @@
 class Service < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :price, presence: true
+
+  has_many :receipt_services
+  has_many :receipts, through: :receipt_services
 end

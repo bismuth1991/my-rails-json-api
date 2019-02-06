@@ -11,4 +11,7 @@
 
 class Receipt < ApplicationRecord
   belongs_to :technician
+
+  has_many :receipt_services
+  has_many :services, through: :receipt_services
 end

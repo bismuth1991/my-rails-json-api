@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "pin_number",
+    "admin"
+  ],
+  "properties": {
+    "id": { "type": "integer" },
+    "name": { "type": "string" },
+    "pin_number": { "type": "integer" },
+    "admin": { "type": "boolean" }
+  }
+}

@@ -36,9 +36,7 @@ RSpec.describe 'DejaVu Technicians API', type: :request do
 
     it "fetches the right technician" do 
       technician = JSON.parse(response.body)
-
       expect(technician["name"]).to eq("Nina")
-      expect(technician["pin_number"]).to eq(1234)
     end
 
     it "returns the technician in correct json format" do 

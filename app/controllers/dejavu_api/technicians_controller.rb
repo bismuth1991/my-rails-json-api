@@ -5,7 +5,8 @@ class DejavuApi::TechniciansController < ApplicationController
   end
   
   def show
-
+    @technician = Technician.find(params[:id])
+    render :show
   end
 
   def create

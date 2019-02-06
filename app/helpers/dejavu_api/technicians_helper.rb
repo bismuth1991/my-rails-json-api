@@ -1,0 +1,2 @@
+module DejavuApi::TechniciansHelper
+end

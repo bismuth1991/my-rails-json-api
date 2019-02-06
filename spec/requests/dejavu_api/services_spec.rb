@@ -77,7 +77,7 @@ RSpec.describe 'DejaVu Services API', type: :request do
     end
 
     it "deletes the service" do
-      expect(Service.find(gel_manicure.id)).to be_nil
+      expect(Service.find_by_id(gel_manicure.id)).to be_nil
       expect(Service.all.length).to eq(2)
     end
   end

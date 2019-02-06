@@ -41,7 +41,7 @@ RSpec.describe 'DejaVu Services API', type: :request do
     end
 
     it "returns the service in correct json format" do 
-      expect(response).to match_response_schema("dejavu_service")
+      expect(response.body).to match_response_schema("dejavu_service")
     end
   end
 end

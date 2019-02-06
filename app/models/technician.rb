@@ -11,5 +11,8 @@
 #
 
 class Technician < ApplicationRecord
+  validates :name, presence: true
+  validates :pin_number, presence: true, :inclusion => 1000..9999
+
   has_many :receipts
 end

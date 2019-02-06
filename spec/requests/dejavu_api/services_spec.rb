@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'DejaVu Services API', type: :request do
+  let!(:gel_manicure) { Service.create(name: "Gel Manicure", price: 30) }
+
   before(:each) do 
     Service.create(name: "Manicure", price: 15)
     Service.create(name: "Pedicure", price: 28)
-    Service.create(name: "Gel Manicure", price: 30)
   end
 
   describe "GET #index" do 
@@ -41,6 +42,29 @@ RSpec.describe 'DejaVu Services API', type: :request do
     end
 
     it "returns the service in correct json format" do 
+      expect(response.body).to match_response_schema("dejavu_service")
+    end
+  end
+
+  describe "PATCH #update" do
+    before(:each) do 
+      patch "/dejavu_api/services/#{gel_manicure.id}", params: {
+        service: {
+          price: 35
+        }
+      }
+    end
+
+    it "responses with status code of 200" do
+      expect(response).to have_http_status(200)   
+    end
+
+    it "updates the service" do 
+      updated_service = JSON.parse(response.body)
+      expect(updated_service["price"]).to eq(35)
+    end
+
+    it "returns the updated service in correct json format" do 
       expect(response.body).to match_response_schema("dejavu_service")
     end
   end

@@ -21,8 +21,27 @@ RSpec.describe 'DejaVu Services API', type: :request do
 
     it "fetches each service in correct format" do 
       JSON.parse(response.body).values.each do |service|
-        expect(service).to match_response_schema('dejavu_service')
+        expect(service).to match_response_schema("dejavu_service")
       end
+    end
+  end
+
+  describe "POST #create" do 
+    before(:each) do 
+      post "/dejavu_api/services/", params: {
+        service: {
+          name: "Gel Pedicure",
+          price: 45
+        }
+      }
+    end
+
+    it "responses with status code of 200" do
+      expect(response).to have_http_status(200)   
+    end
+
+    it "returns the service in correct json format" do 
+      expect(response).to match_response_schema("dejavu_service")
     end
   end
 end

@@ -11,5 +11,5 @@
 #
 
 class Technician < ApplicationRecord
-  
+  has_many :receipts
 end

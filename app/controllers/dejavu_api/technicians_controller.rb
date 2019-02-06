@@ -20,16 +20,29 @@ class DejavuApi::TechniciansController < ApplicationController
   end
 
   def update
+    @technician = Technician.find(params[:id])
 
+    if @technician.update(update_technician_params)
+      render :show
+    else 
+      render json: @technician.errors.full_messages, status: 422
+    end
   end
 
   def destroy
+    technician = Technician.find(params[:id])
+    technician.destroy
 
+    render json: {}
   end
 
   private 
 
   def technician_params
     params.require(:technician).permit(:name, :pin_number, :admin)
+  end
+
+  def update_technician_params
+    params.require(:technician).permit(:name, :pin_number)
   end
 end

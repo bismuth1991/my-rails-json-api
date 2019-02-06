@@ -25,8 +25,8 @@ class DejavuApi::ServicesController < ApplicationController
   end
 
   def destroy
-    @service = Service.find(params[:id])
-    @service.destroy
+    service = Service.find(params[:id])
+    service.destroy
 
     render json: {}
   end
